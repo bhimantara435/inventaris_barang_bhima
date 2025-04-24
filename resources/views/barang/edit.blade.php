@@ -1,5 +1,5 @@
 @empty($barang)
-    <!-- Modal error jika data tidak ditemukan -->
+    {{-- Jika data barang kosong --}}
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,6 +22,7 @@
         </div>
     </div>
 @else
+    {{-- Jika data barang ditemukan, tampilkan form edit --}}
     <form id="formEditBarang" data-id="{{ $barang->id }}">
         @csrf
         @method('PUT')
@@ -35,13 +36,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    {{-- Input Nama Barang --}}
                     <div class="form-group">
                         <label for="edit_nama_barang">Nama Barang <span class="text-danger">*</span></label>
                         <input type="text" id="edit_nama_barang" class="form-control" name="nama_barang"
-                            value="{{ $barang->nama_barang }}" placeholder="Masukkan Nama Barang" required
-                            maxlength="255">
+                            value="{{ $barang->nama_barang }}" placeholder="Masukkan Nama Barang" required maxlength="255">
                         <div class="invalid-feedback" id="edit_nama_barang_error"></div>
                     </div>
+
+                    {{-- Pilihan Kategori --}}
                     <div class="form-group">
                         <label for="edit_kategori_id">Kategori <span class="text-danger">*</span></label>
                         <select class="form-select" id="edit_kategori_id" name="kategori" required>
@@ -54,12 +57,16 @@
                         </select>
                         <div class="invalid-feedback" id="edit_kategori_id_error"></div>
                     </div>
+
+                    {{-- Input Harga --}}
                     <div class="form-group">
                         <label for="edit_harga">Harga <span class="text-danger">*</span></label>
                         <input type="number" id="edit_harga" class="form-control" name="harga"
                             value="{{ $barang->harga }}" placeholder="Masukkan Harga" required>
                         <div class="invalid-feedback" id="edit_harga_error"></div>
                     </div>
+
+                    {{-- Input Stok --}}
                     <div class="form-group">
                         <label for="edit_stok">Stok <span class="text-danger">*</span></label>
                         <input type="number" id="edit_stok" class="form-control" name="stok"
@@ -67,6 +74,7 @@
                         <div class="invalid-feedback" id="edit_stok_error"></div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
